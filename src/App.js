@@ -5,6 +5,7 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 import { calculateNewTax, calculateS3Tax, calculateOldTax } from "./utils/calculateTax"
 
 import { NumericFormat } from 'react-number-format';
+import { findPercentile } from "./utils/calculatePercentile"
 
 const CurrencyTextField = ({ income, handleIncomeChange }) => {
   return (
@@ -28,11 +29,11 @@ const formatNumber = (n) => n.toLocaleString('en-US', { style: 'currency', curre
 const ProgressiveTaxCalculator = () => {
   const [income, setIncome] = useState('');
   const [tax, setTax] = useState();
+  const [percentile, setPercentile] = useState();
   const [isSuper, setIsSuper] = useState(false)
 
   function handleSuper(e) {
     setIsSuper(e.target.checked);
-    console.log(e.target.checked)
   }
 
   const calculateTax = () => {
@@ -40,7 +41,11 @@ const ProgressiveTaxCalculator = () => {
     const oldTax = calculateOldTax(income, isSuper);
     const s3Tax = calculateS3Tax(income, isSuper);
     setTax({ newTax, oldTax, s3Tax });
-    console.log({ newTax, oldTax, s3Tax })
+    const incomeToTax = !!isSuper ? income - (income * 0.11) : income;
+    const percentile = findPercentile(incomeToTax);
+    const tPercentile = 100 - (percentile?.percentile || 0);
+
+    setPercentile(tPercentile === 0 ? 0.1 : tPercentile)
 
   };
   const handleIncomeChange = (values) => {
@@ -74,7 +79,9 @@ const ProgressiveTaxCalculator = () => {
           {(tax.s3Tax - tax.newTax) < 0 ?
             (<p>That's <span style={{ color: "#EE4B2B" }}><b>{formatNumber(Math.abs(tax.s3Tax - tax.newTax))}</b></span> less than the original Stage 3 tax cuts.</p>) :
             <p>That's <span style={{ color: "#50C878" }}><b>{formatNumber(tax.s3Tax - tax.newTax)}</b></span> better than the original Stage 3 tax cuts.</p>}
-        </Typography><TableContainer component={Paper}>
+        </Typography>
+          <Typography variant="body1" gutterBottom>You are in the top {percentile}% of income earners.</Typography>
+          <TableContainer component={Paper}>
             <Table size="small" aria-label="a dense table">
               <TableHead>
                 <TableRow>
