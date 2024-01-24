@@ -70,8 +70,8 @@ const ProgressiveTaxCalculator = () => {
         <Typography variant="h5" style={{ marginTop: '16px' }}>
           <p>Under the new changes, you'll pay <b>{formatNumber(tax.oldTax - tax.newTax)}</b> less next year in taxes.</p>
           {(tax.s3Tax - tax.newTax) < 0 ?
-            (<p>That's <b>{formatNumber(Math.abs(tax.s3Tax - tax.newTax))}</b> less than the original Stage 3 tax cuts.</p>) :
-            <p>That's <b>{formatNumber(tax.s3Tax - tax.newTax)}</b> better than the original Stage 3 tax cuts.</p>
+            (<p>That's <span style={{color:"#EE4B2B"}}><b>{formatNumber(Math.abs(tax.s3Tax - tax.newTax))}</b></span> less than the original Stage 3 tax cuts.</p>) :
+            <p>That's <span style={{color:"#50C878"}}><b>{formatNumber(tax.s3Tax - tax.newTax)}</b></span> better than the original Stage 3 tax cuts.</p>
           }
         </Typography>
       )}
