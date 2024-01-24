@@ -80,9 +80,9 @@ const ProgressiveTaxCalculator = () => {
                 <TableRow>
                   <TableCell>Current Tax (23/24)</TableCell>
                   <TableCell>Original Stage 3</TableCell>
-                  <TableCell>New Stage 3</TableCell>
+                  <TableCell>Revised Stage 3</TableCell>
                   <TableCell>Original Tax Cut</TableCell>
-                  <TableCell>New Tax Cut</TableCell>
+                  <TableCell>Revised Tax Cut</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
