@@ -51,6 +51,7 @@ const ProgressiveTaxCalculator = () => {
       <Typography variant="h4" gutterBottom>
        Stage 3 Plus Calculator
       </Typography>
+      <p>Find out if you're better off with the new version of the Stage 3 Tax Cuts.</p>
       <CurrencyTextField
         income={income} handleIncomeChange={handleIncomeChange}
       />
