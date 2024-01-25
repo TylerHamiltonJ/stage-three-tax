@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { TextField, Button, Typography, Container, Switch, FormGroup, FormControlLabel } from '@mui/material';
+import { TextField, Button, Typography, Container, Box, Switch, FormGroup, FormControlLabel } from '@mui/material';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-
 import { calculateNewTax, calculateS3Tax, calculateOldTax } from "./utils/calculateTax"
 
 import { NumericFormat } from 'react-number-format';
@@ -102,6 +101,10 @@ const ProgressiveTaxCalculator = () => {
             </Table>
           </TableContainer></>
       )}
+      {tax && (
+        <Box style={{ marginTop: "20px" }}>
+          <a href='https://ko-fi.com/I2I3BUI7V' target='_blank'><img height='36' style={{ border: '0px', height: '25px' }} src='https://storage.ko-fi.com/cdn/kofi1.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+        </Box>)}
     </Container>
   );
 };
