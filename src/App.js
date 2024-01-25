@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, Button, Typography, Container, Box, Switch, FormGroup, FormControlLabel } from '@mui/material';
+import { TextField, Typography, Container, Box, Switch, FormGroup, FormControlLabel } from '@mui/material';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import { calculateNewTax, calculateS3Tax, calculateOldTax } from "./utils/calculateTax"
 
@@ -69,10 +69,6 @@ const ProgressiveTaxCalculator = () => {
           inputProps={{ 'aria-label': 'controlled' }}
         />} label="Includes superannuation" />
       </FormGroup>
-      {/* <Button variant="contained" color="primary" onClick={calculateTax}>
-        Calculate Tax
-      </Button> */}
-
 
       {tax && (
         <><Typography variant="h5" style={{ marginTop: '16px' }}>
