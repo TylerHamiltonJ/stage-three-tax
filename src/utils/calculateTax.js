@@ -23,7 +23,7 @@ function calculateIncomeTax(income, brackets) {
 
 const calculateNewTax = (income, isSuper) => {
     const brackets = [
-        { rate: 0, maxAmount: 19000 },
+        { rate: 0, maxAmount: 18200 },
         { rate: 0.16, maxAmount: 45000 },
         { rate: 0.30, maxAmount: 135000 },
         { rate: 0.37, maxAmount: 190000 },
