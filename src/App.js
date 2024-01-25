@@ -35,18 +35,17 @@ const ProgressiveTaxCalculator = () => {
     setIsSuper(e.target.checked);
   }
 
-  const calculateTax = () => {
-    const newTax = calculateNewTax(income, isSuper);
-    const oldTax = calculateOldTax(income, isSuper);
-    const s3Tax = calculateS3Tax(income, isSuper);
-    setTax({ newTax, oldTax, s3Tax });
-    const incomeToTax = !!isSuper ? income - (income * 0.11) : income;
-    const percentile = findPercentile(incomeToTax);
-    const tPercentile = 100 - (percentile?.percentile || 0);
-    setPercentile(tPercentile === 0 ? 0.1 : tPercentile)
-  };
-
   useEffect(() => {
+    const calculateTax = () => {
+      const newTax = calculateNewTax(income, isSuper);
+      const oldTax = calculateOldTax(income, isSuper);
+      const s3Tax = calculateS3Tax(income, isSuper);
+      setTax({ newTax, oldTax, s3Tax });
+      const incomeToTax = !!isSuper ? income - (income * 0.11) : income;
+      const percentile = findPercentile(incomeToTax);
+      const tPercentile = 100 - (percentile?.percentile || 0);
+      setPercentile(tPercentile === 0 ? 0.1 : tPercentile)
+    };
     calculateTax();
   }, [income, isSuper]);
 
