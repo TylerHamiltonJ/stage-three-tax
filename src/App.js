@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TextField, Button, Typography, Container, Box, Switch, FormGroup, FormControlLabel } from '@mui/material';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import { calculateNewTax, calculateS3Tax, calculateOldTax } from "./utils/calculateTax"
@@ -26,7 +26,7 @@ const CurrencyTextField = ({ income, handleIncomeChange }) => {
 const formatNumber = (n) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
 const ProgressiveTaxCalculator = () => {
-  const [income, setIncome] = useState('');
+  const [income, setIncome] = useState(60000);
   const [tax, setTax] = useState();
   const [percentile, setPercentile] = useState();
   const [isSuper, setIsSuper] = useState(false)
@@ -43,10 +43,13 @@ const ProgressiveTaxCalculator = () => {
     const incomeToTax = !!isSuper ? income - (income * 0.11) : income;
     const percentile = findPercentile(incomeToTax);
     const tPercentile = 100 - (percentile?.percentile || 0);
-
     setPercentile(tPercentile === 0 ? 0.1 : tPercentile)
-
   };
+
+  useEffect(() => {
+    calculateTax();
+  }, [income, isSuper]);
+
   const handleIncomeChange = (values) => {
     const { value } = values;
     setIncome(value);
@@ -67,9 +70,9 @@ const ProgressiveTaxCalculator = () => {
           inputProps={{ 'aria-label': 'controlled' }}
         />} label="Includes superannuation" />
       </FormGroup>
-      <Button variant="contained" color="primary" onClick={calculateTax}>
+      {/* <Button variant="contained" color="primary" onClick={calculateTax}>
         Calculate Tax
-      </Button>
+      </Button> */}
 
 
       {tax && (
