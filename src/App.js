@@ -103,7 +103,7 @@ const ProgressiveTaxCalculator = () => {
       )}
       {tax && (
         <Box style={{ marginTop: "20px" }}>
-          <a href='https://ko-fi.com/I2I3BUI7V' target='_blank'><img height='36' style={{ border: '0px', height: '25px' }} src='https://storage.ko-fi.com/cdn/kofi1.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+          <a href='https://ko-fi.com/I2I3BUI7V' target='_blank' rel="noreferrer"><img height='36' style={{ border: '0px', height: '25px' }} src='https://storage.ko-fi.com/cdn/kofi1.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
         </Box>)}
     </Container>
   );
