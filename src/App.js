@@ -56,8 +56,8 @@ const ProgressiveTaxCalculator = () => {
 
   return (
     <Container maxWidth="sm" style={{ marginTop: "15px" }}>
-      <Typography variant="h4" gutterBottom>
-        Stage 3 Plus Calculator
+      <Typography variant="h4" gutterBottom component="h1" >
+       Stage 3 Tax Cuts Calculator
       </Typography>
       <p>Find out if you're better off with the new version of the Stage 3 Tax Cuts.</p>
       <CurrencyTextField

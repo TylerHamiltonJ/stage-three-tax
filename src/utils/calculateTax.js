@@ -1,22 +1,17 @@
 function calculateIncomeTax(income, brackets) {
-    const tax = brackets.reduce((a, c, i) => {
-        const maxAmount = c.maxAmount;
-        const minAmount = brackets[i - 1]?.maxAmount || 0;
-        // Don't do the tax if not in the bracket.
-        if (income <= minAmount) {
-            return a;
+    const tax = brackets.reduce((totalTax, bracket, i) => {
+        const maxAmount = bracket.maxAmount;
+        const minAmount = i > 0 ? brackets[i - 1].maxAmount : 0;
+
+        if (income > minAmount) {
+            const taxableAmount = Math.min(income, maxAmount) - minAmount;
+            const taxChunk = taxableAmount * bracket.rate;
+            totalTax += taxChunk;
         }
 
-        // Apply the tax to the amount in this bracket.
-        if (income > minAmount && income <= maxAmount) {
-            const taxChunk = (income - minAmount) * c.rate;
-            return a + taxChunk;
-        }
+        return totalTax;
+    }, 0);
 
-        // Apply the tax to only some of the amount.
-        const taxChunk = (maxAmount - minAmount) * c.rate;
-        return a + taxChunk;
-    }, 0)
     return tax;
 }
 
